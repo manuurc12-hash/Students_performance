@@ -18,3 +18,17 @@ print(datos.isnull().sum())
 print("Registros duplicados:", datos.duplicated().sum())
 print("Estadisticas descriptivas:")
 print(datos.describe())
+
+datos = datos.drop_duplicates()
+datos = datos.dropna()
+
+datos = datos.rename(columns={
+    "race/ethnicity": "group",
+    "parental level of education": "parent_education",
+    "test preparation course": "prep_course",
+    "math score": "math_score",
+    "reading score": "reading_score",
+    "writing score": "writing_score"
+})
+
+datos["prep_course"] = datos["prep_course"].replace({"none": "no lo hizo", "completed": "lo completo"})
